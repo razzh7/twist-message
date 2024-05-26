@@ -18,8 +18,8 @@ importers:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       twist-scripts:
-        specifier: ^0.0.3
-        version: 0.0.3(@types/node@20.12.12)(typescript@5.4.5)
+        specifier: ^0.0.4
+        version: 0.0.4(@types/node@20.12.12)(typescript@5.4.5)
     devDependencies:
       '@types/node':
         specifier: ^20.12.12
@@ -1642,8 +1642,8 @@ packages:
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  twist-scripts@0.0.3:
-    resolution: {integrity: sha512-YqOeBKUeDan/i9U7Bczy0D8wF0FtJ77w+45F9ftQXzkUHYdeyFE4suXqY+2JZIBp+MXbfOreWA0qScbTVZzsNg==}
+  twist-scripts@0.0.4:
+    resolution: {integrity: sha512-1N/uB8KwVtuHt+M0mW8Ij0+KLbOIy1yG7Re2DTGuRfYWfa4mwh45ibJ2fpXXyxOK7rsp2XbwZGXiYlTBbMQ6Mw==}
     hasBin: true
 
   type-check@0.4.0:
@@ -3504,7 +3504,7 @@ snapshots:
 
   tslib@2.6.2: {}
 
-  twist-scripts@0.0.3(@types/node@20.12.12)(typescript@5.4.5):
+  twist-scripts@0.0.4(@types/node@20.12.12)(typescript@5.4.5):
     dependencies:
       chalk: 4.1.2
       clean-css: 5.3.3

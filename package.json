@@ -18,15 +18,17 @@
     "build:component": "twist-scripts build:component",
     "build:style": "twist-scripts build:style",
     "build": "pnpm run build:component && pnpm run build:style && pnpm run dtsgen",
+    "build:site": "twist-scripts build:site",
     "dtsgen": "twist-scripts dtsgen './components/**/*.{tsx,ts}'",
     "clean": "./scripts/clean.sh",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@twist-space/react-icons": "^0.2.17",
     "clsx": "^2.1.1",
     "react-transition-group": "^4.4.5",
-    "twist-scripts": "^0.0.3"
+    "twist-scripts": "^0.0.4"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
