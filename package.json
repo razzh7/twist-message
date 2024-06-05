@@ -1,10 +1,12 @@
 {
   "name": "twist-message",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A react message component",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "unpkg": "dist/twist-message.min.js",
+  "types": "es/index.d.ts",
   "author": "razzh",
   "license": "MIT",
   "files": [
@@ -15,9 +17,10 @@
   "scripts": {
     "dev:site": "twist-scripts dev:site",
     "dev:component": "twist-scripts dev:component",
-    "build:component": "twist-scripts build:component",
+    "build:component": "cross-env BUILD_ENV_DIST_FILENAME_JS=twist-message.min.js UMD_NAME=TwistMessage twist-scripts build:component",
+    "build:umd": "cross-env BUILD_ENV_MODE=development BUILD_ENV_DIST_FILENAME_JS=twist-message.development.js UMD_NAME=TwistMessage twist-scripts build:umd",
     "build:style": "twist-scripts build:style",
-    "build": "pnpm run build:component && pnpm run build:style && pnpm run dtsgen",
+    "build": "pnpm build:component && pnpm build:umd && pnpm run build:style",
     "build:site": "twist-scripts build:site",
     "dtsgen": "twist-scripts dtsgen './components/**/*.{tsx,ts}'",
     "clean": "./scripts/clean.sh",
@@ -25,7 +28,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@twist-space/react-icons": "^0.2.17",
+    "@twist-space/react-icons": "0.3.0-alpha.3",
     "clsx": "^2.1.1",
     "react-transition-group": "^4.4.5"
   },
@@ -37,6 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -45,8 +49,8 @@
     "less-plugin-clean-css": "^1.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "twist-scripts": "0.1.0-alpha.1",
     "typescript": "^5.2.2",
-    "vite": "^5.2.0",
-    "twist-scripts": "^0.0.5"
+    "vite": "^5.2.0"
   }
 }
