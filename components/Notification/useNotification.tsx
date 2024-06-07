@@ -23,11 +23,12 @@ function mergeConfig<T>(...objList: Partial<T>[]): T {
 function useNotification(
   commonConfig: NotificationConfig
 ): readonly [NotificationAPI, React.ReactNode] {
-  const { maxCount, duration } = commonConfig;
+  const { prefixCls, maxCount, duration } = commonConfig;
   const notificationsRef = React.useRef<NotificationAPI>(null);
   const contextHolder = (
     <Notification
       ref={notificationsRef}
+      prefixCls={prefixCls}
       maxCount={maxCount}
       duration={duration}
     />

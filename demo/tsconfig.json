@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "twist-message": [".."]
+    }
+  },
+  "include": ["./App.tsx", "./main.tsx"],
+}

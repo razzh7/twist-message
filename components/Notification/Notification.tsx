@@ -10,10 +10,9 @@ import type {
   Placement,
   NotificationConfig
 } from './interface';
-import '../styles';
 
 const Notification = React.forwardRef<NotificationAPI, NotificationConfig>((props, ref) => {
-  const { maxCount } = props;
+  const { prefixCls, maxCount } = props;
   const [configList, setConfigList] = React.useState<OpenConfig[]>([]);
   const onNoticeClose = (key: React.Key) => {
     const notice = configList.find((notice) => notice.key === key);
@@ -72,7 +71,7 @@ const Notification = React.forwardRef<NotificationAPI, NotificationConfig>((prop
           placementList.map((placement) => {
             const config = placements[placement];
             return (
-              <div key={placement} className={cs("twist-message-wrapper", `twist-message-${placement}`)}>
+              <div key={placement} className={cs(`${prefixCls}`, `${prefixCls}-${placement}`)}>
                 <TransitionGroup component={null}>
                   {
                     config?.map((notice) => (
@@ -80,7 +79,7 @@ const Notification = React.forwardRef<NotificationAPI, NotificationConfig>((prop
                       <CSSTransition
                         key={notice.key}
                         timeout={notice.transitionTimeout || 300}
-                        classNames={notice.transitionClassNames || 'fadeMessage'}
+                        classNames={notice.transitionClassNames || `${prefixCls}-notice-fade`}
                         onExit={(e: HTMLElement) => {
                           e.style.height = `${e.scrollHeight}px`;
                         }}
@@ -93,7 +92,9 @@ const Notification = React.forwardRef<NotificationAPI, NotificationConfig>((prop
                         }}
                         appear
                       >
-                        <Notice noticeKey={notice.key!} {...notice} onClose={onNoticeClose} />
+                        <div className={`${prefixCls}-notice-wrapper`}>
+                          <Notice noticeKey={notice.key!} {...notice} onClose={onNoticeClose} />
+                        </div>
                       </CSSTransition>
                     ))
                   }

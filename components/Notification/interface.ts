@@ -1,6 +1,7 @@
 import React from "react";
 
 export interface NotificationConfig {
+  prefixCls?: string;
   maxCount?: number;
   duration?: number;
 }

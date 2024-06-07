@@ -1,0 +1,55 @@
+.@{notice-prefix}-wrapper {
+  padding: 8px;
+  text-align: center;
+}
+
+.@{notice-prefix}-content {
+  display: inline-block;
+  padding: 9px 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  pointer-events: all;
+
+  &-close {
+    display: inline-block;
+    vertical-align: -4px;
+    cursor: pointer;
+  }
+}
+
+.@{notice-prefix}-fade-enter,
+.@{notice-prefix}-fade-appear {
+  animation: scale-open 0.2s cubic-bezier(0.08, 0.82, 0.17, 1);
+  opacity: 0;
+}
+
+.@{notice-prefix}-fade-enter-active,
+.@{notice-prefix}-fade-appear-active {
+  opacity: 1;
+  animation: scale-open 0.2s cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+
+.@{notice-prefix}-fade-exit {
+  // overflow: hidden;
+  opacity: 1;
+}
+
+.@{notice-prefix}-fade-exit-active {
+  opacity: 0;
+  height: 0;
+  transition: all .3s cubic-bezier(0.34, 0.69, 0.1, 1);
+}
+
+@keyframes scale-open {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.@{notice-prefix}-closable .@{message-prefix}-content {
+  padding-right: 15px;
+}

@@ -1,9 +1,11 @@
 import React from "react";
 import useNotification from '../Notification/useNotification';
+import Content from './Content';
 import type { GlobalMessageConfig, MessageInstance, ArgsProps, NoticeType, TypeOpen } from './interface';
 import type { NotificationAPI } from "../Notification/interface";
 
 const MessageHolder = React.forwardRef<NotificationAPI, GlobalMessageConfig>((props, ref) => {
+  console.log('props', props)
   const [api, holder] = useNotification(props);
 
   React.useImperativeHandle(ref, () => {
@@ -26,18 +28,34 @@ let keyIndex = 0;
 function useMessage(
   gobalConfig: GlobalMessageConfig
 ): readonly [MessageInstance, React.ReactNode] {
-  const { maxCount, duration: globalDuration } = gobalConfig;
+  const { prefixCls = 'twist-message', maxCount, duration: globalDuration } = gobalConfig;
   const contextHolderRef = React.useRef<NotificationAPI>(null);
-
+console.log('gobalConfig', gobalConfig)
   const open = (config: ArgsProps): void => {
     if (!contextHolderRef.current) {
       throw new Error('MessageHolder muse be render.');
     }
 
     const { open: orignOpen } = contextHolderRef.current;
-    const { key, duration, placement = 'top' } = config;
+    const {
+      key,
+      type,
+      icon,
+      duration,
+      placement = 'top',
+      content,
+      showIcon = true,
+      onClose,
+      style,
+      className,
+      transitionClassNames,
+      transitionTimeout,
+      closable,
+      closeIcon
+    } = config;
     let mergedKey = key;
     let mergedDuration;
+
     if (key === undefined) {
       mergedKey = `twist-message-${keyIndex}`;
       keyIndex += 1;
@@ -53,18 +71,27 @@ function useMessage(
       key: mergedKey,
       maxCount: maxCount,
       duration: mergedDuration,
-      content: config?.content,
-      type: config?.type,
+      content: (
+        <Content
+          type={type}
+          icon={icon}
+          prefixCls={prefixCls}
+          showIcon={showIcon}
+        >
+          {content}
+        </Content>
+      ),
+      type,
       placement: placement,
-      onClose: config?.onClose,
-      style: config?.style,
-      className: config?.className,
-      transitionClassNames: config?.transitionClassNames,
-      transitionTimeout: config?.transitionTimeout,
-      showIcon: config?.showIcon,
-      icon: config?.icon,
-      closable: config?.closable,
-      closeIcon: config?.closeIcon
+      onClose,
+      style,
+      className,
+      transitionClassNames,
+      transitionTimeout,
+      showIcon,
+      icon,
+      closable,
+      closeIcon
     });
   };
 

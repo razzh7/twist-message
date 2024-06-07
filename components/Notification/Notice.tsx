@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  AiInfoCircleFilled,
-  AiCheckCircleFilled,
-  AiCloseCircleFilled,
-  AiCloseOutlined,
-  AiLoadingOutlined
-} from '@twist-space/react-icons/ai';
+import { AiCloseOutlined } from '@twist-space/react-icons/ai';
 import cs from 'clsx';
 import type { NoticeProps } from './interface';
-import '../styles';
 
 function Notice(props: NoticeProps) {
   const {
@@ -16,42 +9,38 @@ function Notice(props: NoticeProps) {
     duration = 3000,
     onClose,
     content,
-    icon,
-    type,
     closable,
     closeIcon,
-    style,
-    showIcon = true
+    prefixCls
   } = props;
   const [timer, setTimer] = React.useState<number | null>(null);
-  const renderIcon = () => {
-    let content: React.ReactNode;
-    if (icon) {
-      content = icon;
-    } else {
-      switch (type) {
-      case 'info':
-        content = <AiInfoCircleFilled />;
-        break;
-      case 'success':
-        content = <AiCheckCircleFilled />;
-        break;
-      case 'error':
-        content = <AiCloseCircleFilled />;
-        break;
-      case 'warning':
-        content = <AiInfoCircleFilled />;
-        break;
-      case 'loading':
-        content = <AiLoadingOutlined spin />;
-        break;
-      default:
-        content = null;
-      }
-    }
+  //   let content: React.ReactNode;
+  //   if (icon) {
+  //     content = icon;
+  //   } else {
+  //     switch (type) {
+  //     case 'info':
+  //       content = <AiInfoCircleFilled />;
+  //       break;
+  //     case 'success':
+  //       content = <AiCheckCircleFilled />;
+  //       break;
+  //     case 'error':
+  //       content = <AiCloseCircleFilled />;
+  //       break;
+  //     case 'warning':
+  //       content = <AiInfoCircleFilled />;
+  //       break;
+  //     case 'loading':
+  //       content = <AiLoadingOutlined spin />;
+  //       break;
+  //     default:
+  //       content = null;
+  //     }
+  //   }
 
-    return content;
-  };
+  //   return content;
+  // };
 
   const onInteralClose = () => {
     onClose(noticeKey);
@@ -93,25 +82,31 @@ function Notice(props: NoticeProps) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const noticePrefixCls = `${prefixCls}-notice`;
+
   return (
     <div
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      className={cs(noticePrefixCls, {
+        [`${noticePrefixCls}-closable`]: closable
+      
+      })}
     >
-      <div className={cs('twist-message', `twist-message-${type}`, closable && 'twist-message-closable')} style={style} role="alert">
-        <span className='twist-message-icon'>{showIcon ? renderIcon() : null}</span>
-        <span className='twist-message-content'>{content}</span>
-        { closable
-          ? (
-            <span className={cs('twist-message-close-btn', 'twist-message-icon-hover')} onClick={onInteralClose}>
-              {
-                closeIcon
-                  ? closeIcon
-                  : <AiCloseOutlined />
-              }
-            </span>
-          )
-          : null
+      <div className={`${noticePrefixCls}-content`}>
+        {content}
+        {
+          closable
+            ? (
+              <span className={cs(`${noticePrefixCls}-content-close`)} onClick={onInteralClose}>
+                {
+                  closeIcon
+                    ? closeIcon
+                    : <AiCloseOutlined />
+                }
+              </span>
+            )
+            : null
         }
       </div>
     </div>

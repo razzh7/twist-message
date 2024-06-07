@@ -77,6 +77,7 @@ export type TypeOpen = (
 ) => void;
 
 export interface GlobalMessageConfig {
+  prefixCls?: string;
   maxCount?: number;
   duration?: number;
 }

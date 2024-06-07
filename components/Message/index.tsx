@@ -43,7 +43,9 @@ type Task = OpenTask | TypeTask | DestroyTask;
 
 let taskQueue: Task[] = [];
 let message: GlobalMessage;
-let defaultConfig: GlobalMessageConfig = {};
+let defaultConfig: GlobalMessageConfig = {
+  prefixCls: 'twist-message'
+};
 
 function setMessageGlobalConfig(
   config: GlobalMessageConfig
@@ -75,7 +77,6 @@ function open(config: OpenConfig) {
       ...config
     }
   };
-
   taskQueue.push(task);
 
   flushNotice();
