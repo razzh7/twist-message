@@ -5,7 +5,6 @@ import type { GlobalMessageConfig, MessageInstance, ArgsProps, NoticeType, TypeO
 import type { NotificationAPI } from "../Notification/interface";
 
 const MessageHolder = React.forwardRef<NotificationAPI, GlobalMessageConfig>((props, ref) => {
-  console.log('props', props)
   const [api, holder] = useNotification(props);
 
   React.useImperativeHandle(ref, () => {
@@ -30,7 +29,6 @@ function useMessage(
 ): readonly [MessageInstance, React.ReactNode] {
   const { prefixCls = 'twist-message', maxCount, duration: globalDuration } = gobalConfig;
   const contextHolderRef = React.useRef<NotificationAPI>(null);
-console.log('gobalConfig', gobalConfig)
   const open = (config: ArgsProps): void => {
     if (!contextHolderRef.current) {
       throw new Error('MessageHolder muse be render.');
@@ -134,7 +132,16 @@ console.log('gobalConfig', gobalConfig)
   });
 
 
-  return [wrapAPI, <MessageHolder key="message-holder" ref={contextHolderRef} {...gobalConfig} />];
+  return [
+    wrapAPI,
+    <MessageHolder
+      key={`${prefixCls}-holder`}
+      ref={contextHolderRef}
+      prefixCls={prefixCls}
+      maxCount={maxCount}
+      duration={globalDuration}
+    />
+  ];
 }
 
 export default useMessage;

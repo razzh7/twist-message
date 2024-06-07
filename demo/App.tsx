@@ -2,7 +2,6 @@ import React from 'react';
 import { Message, useMessage } from 'twist-message';
 
 function App() {
-  debugger
   const [api, contextHolder] = useMessage({ maxCount: 3 });
   const ConfigContext = React.createContext({});
 
