@@ -2,7 +2,7 @@ import React from 'react';
 import { Message, useMessage } from 'twist-message';
 
 function App() {
-  const [api, contextHolder] = useMessage({ maxCount: 3 });
+  const [api, contextHolder] = useMessage({ maxCount: 3, duration: 2000 });
   const ConfigContext = React.createContext({});
 
   Message.config({
@@ -15,16 +15,12 @@ function App() {
         <ConfigContext.Consumer>
           {(name) => `Current user: ${name}`}
         </ConfigContext.Consumer>
-      ),
-      duration: 0
+      )
     });
   };
 
   const useMessageSuccess = () => {
-    api.success({
-      content: 'useMessage Success',
-      duration: 0
-    });
+    api.success('useMessage Success');
   };
 
   return (
