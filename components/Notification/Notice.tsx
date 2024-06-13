@@ -14,33 +14,6 @@ function Notice(props: NoticeProps) {
     prefixCls
   } = props;
   const [timer, setTimer] = React.useState<number | null>(null);
-  //   let content: React.ReactNode;
-  //   if (icon) {
-  //     content = icon;
-  //   } else {
-  //     switch (type) {
-  //     case 'info':
-  //       content = <AiInfoCircleFilled />;
-  //       break;
-  //     case 'success':
-  //       content = <AiCheckCircleFilled />;
-  //       break;
-  //     case 'error':
-  //       content = <AiCloseCircleFilled />;
-  //       break;
-  //     case 'warning':
-  //       content = <AiInfoCircleFilled />;
-  //       break;
-  //     case 'loading':
-  //       content = <AiLoadingOutlined spin />;
-  //       break;
-  //     default:
-  //       content = null;
-  //     }
-  //   }
-
-  //   return content;
-  // };
 
   const onInteralClose = () => {
     onClose(noticeKey);
