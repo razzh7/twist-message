@@ -45,8 +45,6 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
-    "less": "^4.2.0",
-    "less-plugin-clean-css": "^1.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "twist-scripts": "0.1.0-alpha.1",
