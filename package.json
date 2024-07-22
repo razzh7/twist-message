@@ -15,6 +15,7 @@
     "lib"
   ],
   "scripts": {
+    "start": "concurrently pnpm:dev:component pnpm:dev:site",
     "dev:site": "twist-scripts dev:site",
     "dev:component": "twist-scripts dev:component",
     "build:component": "cross-env BUILD_ENV_DIST_FILENAME_JS=twist-message.min.js UMD_NAME=TwistMessage twist-scripts build:component",
@@ -28,7 +29,7 @@
     "preview": "pnpm build && vite preview"
   },
   "dependencies": {
-    "@twist-space/react-icons": "0.3.0-alpha.3",
+    "@twist-space/react-icons": "0.3.0",
     "clsx": "^2.1.1",
     "react-transition-group": "^4.4.5"
   },
@@ -40,6 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
