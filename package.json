@@ -1,7 +1,7 @@
 {
   "name": "twist-message",
   "private": false,
-  "version": "0.0.3-alpha.1",
+  "version": "0.0.3",
   "description": "A react message component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -15,13 +15,13 @@
     "lib"
   ],
   "scripts": {
-    "start": "concurrently pnpm:dev:component pnpm:dev:site",
+    "start": "concurrently pnpm:dev pnpm:dev:site",
+    "dev": "twist-scripts dev:component",
+    "build:component": "cross-env UMD_GLOBAL_NAME=TwistMessage UMD_FILE_NAME=twist-message.min.js BUILD_ENV_DIST_FILENAME_CSS=twist-message.min.css twist-scripts build:component",
+    "build:style:dev": "cross-env BUILD_ENV_MODE=development BUILD_ENV_DIST_FILENAME_CSS=twist-message.css twist-scripts build:style",
+    "build:umd:dev": "cross-env BUILD_ENV_MODE=development UMD_GLOBAL_NAME=TwistMessage UMD_FILE_NAME=twist-message.development.js twist-scripts build:umd",
+    "build": "pnpm build:component && pnpm build:umd:dev && pnpm build:style:dev",
     "dev:site": "twist-scripts dev:site",
-    "dev:component": "twist-scripts dev:component",
-    "build:component": "cross-env BUILD_ENV_DIST_FILENAME_JS=twist-message.min.js UMD_NAME=TwistMessage twist-scripts build:component",
-    "build:umd": "cross-env BUILD_ENV_MODE=development BUILD_ENV_DIST_FILENAME_JS=twist-message.development.js UMD_NAME=TwistMessage twist-scripts build:umd",
-    "build:style": "twist-scripts build:style",
-    "build": "pnpm build:component && pnpm build:umd && pnpm run build:style",
     "build:site": "pnpm build && twist-scripts build:site",
     "dtsgen": "twist-scripts dtsgen './components/**/*.{tsx,ts}'",
     "clean": "./scripts/clean.sh",
@@ -49,7 +49,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "twist-scripts": "0.1.0-alpha.1",
+    "twist-scripts": "0.1.0-alpha.2",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }
